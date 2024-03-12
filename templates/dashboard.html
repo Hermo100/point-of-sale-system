@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>MyDuka</title>
+	<meta charset="utf-8">
+  <script>src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"</script>
+	<link rel="stylesheet" href="/static/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link rel="stylesheet" href="/static/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="/static/animate.css">
+	
+	<link rel="stylesheet" href="/static/owl.carousel.min.css">
+	<link rel="stylesheet" href="/static/owl.theme.default.min.css">
+	<link rel="stylesheet" href="/static/magnific-popup.css">
+  <link rel="stylesheet" href="/static/dashboard.css">
+  <link rel="stylesheet" href="/static/sales.css">
+	
+	<link rel="stylesheet" href="/static/flaticon.css">
+</head>
+<body style="background-color: white;">
+
+	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+
+			<h1 style="font-family: fantasy; font-size: 90px;color: orange;">My Duka</a></h1>
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+          
+					<li ><a href="/">Home</a></li>
+          <li class="colorlib-active"><a href="/dashboard">dashboard</a></li>
+					<li><a href="/products">products</a></li>
+					<li><a href="/sales">sales</a></li>
+					
+					<li><a href="/login">logout</a></li>
+				</ul>
+			</nav>
+			<div class="colorlib-footer">
+				<div class="mb-4">
+					<h3>Subscribe for newsletter</h3>
+					<form action="#" class="colorlib-subscribe-form">
+						<div class="form-group d-flex">
+							<div class="icon"><span class="icon-paper-plane"></span></div>
+							<input type="text" class="form-control" placeholder="Enter Email Address">
+						</div>
+					</form>
+				</div>
+				<p class="pfooter"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://infinityByte studios" target="_blank">infinityByte studios</a>
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+				</div>
+			</aside> <!-- END COLORLIB-ASIDE -->
+      
+			<div id="colorlib-main">
+    <div class="container text-center">
+      <div class="row align-items-start">
+        <div class="col-md-6">
+          <canvas id="bar-chart" width="800" height="643"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script>
+      // Bar chart
+      new Chart(document.getElementById("bar-chart"), {
+        type: "bar",
+        data: {
+          labels:{{productss | safe}},
+          datasets: [
+            {
+              label: "sales per product",
+              backgroundColor: [
+                "#3e95cd",
+                "#8e5ea2",
+                "#3cba9f",
+                "#e8c3b9",
+                "#c45850",
+              ],
+              data: {{total_sales | safe}},
+            },
+          ],
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: "Sales information for MyDuka products",
+          },
+        },
+      });
+    </script>
+        </div>
+
+        <br> <br> <br> <br> <br>
+
+        <div class="col-md-6">
+          <canvas id="line-chart" width="800" height="640"></canvas>
+    <script>
+        new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: {{sale_date | safe }},
+    datasets: [{ 
+        data: {{day_sales | safe}},
+        label: "Total Sales",
+        borderColor: "#3e95cd",
+        fill: false
+      }, 
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Sales information per day'
+    }
+  }
+});
+    </script>
+        </div>
+      </div>
+    </div>
+   <br>
+    <table style="color: black;">
+      <thead>
+        <tr>
+          <th>date</th>
+          <th>profit made</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for i in profit%}
+        <tr>
+          <td>{{i[0]}}</td>
+          <td>{{i[1]}}</td>
+          
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+  <img src="data:image/jpeg;base64,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" alt="jjjjjjj">
+</html>
+<footer>
+  <div class="container">
+    <a href="index.html" class="logo">
+
+    <ul>
+      <li><a href="facebook.com" class="tran3s round-border"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+      <li><a href="#" class="tran3s round-border"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+      <li><a href="#" class="tran3s round-border"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+      <li><a href="#" class="tran3s round-border"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+      <li><a href="#" class="tran3s round-border"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+      <li><a href="#" class="tran3s round-border"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
+      <li><a href="#" class="tran3s round-border"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+      <li><a href="#" class="tran3s round-border"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+    </ul>
+    <p>Copyright @2018 All rights reserved by <a href="https://colorlib.com" target="_blank">infinityByte studios</a></p>
+  </div>
+</footer>
+			</div><!-- END COLORLIB-MAIN -->
+		</div><!-- END COLORLIB-PAGE -->
+		<!-- loader -->
+		<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/jquery-migrate-3.0.1.min.js"></script>
+		<script src="/static/js/popper.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/jquery.easing.1.3.js"></script>
+		<script src="/static/js/jquery.waypoints.min.js"></script>
+		<script src="/static/js/jquery.stellar.min.js"></script>
+		<script src="/static/js/owl.carousel.min.js"></script>
+		<script src="/static/js/jquery.magnific-popup.min.js"></script>
+		<script src="/static/js/jquery.animateNumber.min.js"></script>
+		<script src="/static/js/scrollax.min.js"></script>
+		<script src="/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+		<script src="/static/js/google-map.js"></script>
+		<script src="/static/js/main.js"></script>
+    <script src="/static/js/dashbod.js"></script>
+		
+	</body>
+	</html>

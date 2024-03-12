@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/static/index.css" />
+    <title>MyDuka</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Sidebar Section -->
+      <aside>
+        <div class="toggle">
+          <div class="logo">
+            <h2>MyDuka<span class="danger">System</span></h2>
+          </div>
+          <div class="close" id="close-btn">
+            <span class="material-icons-sharp"> close </span>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <a href="/">
+            <span class="material-icons-sharp"> dashboard </span>
+            <h3>Home</h3>
+          </a>
+          <a href="/login">
+            <span class="material-icons-sharp"> add </span>
+            <h3>Login/SignUp</h3>
+          </a>
+          <a href="/login" class="active">
+            <span class="material-icons-sharp"> insights </span>
+            <h3>Analytics</h3>
+          </a>
+
+          <a href="/login">
+            <span class="material-icons-sharp"> inventory </span>
+            <h3>Sales</h3>
+          </a>
+          <a href="/login">
+            <span class="material-icons-sharp"> inventory </span>
+            <h3>Products</h3>
+          </a>
+
+          <a href="/logout"
+            >
+            <span class="material-icons-sharp"> logout </span>
+            <h3>Logout</h3>
+          </a>
+        </div>
+      </aside>
+      <!-- End of Sidebar Section -->
+
+      <!-- Main Content -->
+      <main>
+        <h1>Shop</h1>
+        <!-- Analyses -->
+        <div class="analyse">
+          <div class="sales">
+            <div class="status">
+              <div class="info">
+                <h1>Total Sales</h1>
+                <p
+                  style="
+                    font-size: 25px;
+                    font-family: Arial, Helvetica, sans-serif;
+                  "
+                >
+                  {%for i in sum_sales%} {{ i[0]}} Shillings {% endfor %}
+                </p>
+              </div>
+              <div class="progresss">
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+                <!-- <div class="percentage">
+                                <p>2+2</p>
+                            </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="visits">
+            <div class="status">
+              <div class="info">
+                <h1>Best selling day</h1>
+                <p
+                  style="
+                    font-size: 25px;
+                    font-family: Arial, Helvetica, sans-serif;
+                  "
+                >
+                  {%for j in datebest %} {{j[0]}} {% endfor %} with sales worth
+                  {%for j in datebest %} {{j[1]}} shillings {% endfor %}
+                </p>
+              </div>
+              <div class="progresss">
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+                <!-- <div class="percentage">
+                                <p>-48%</p>
+                            </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="searches">
+            <div class="status">
+              <div class="info">
+                <h1>Best Product</h1>
+                <p
+                  style="
+                    font-size: 25px;
+                    font-family: Arial, Helvetica, sans-serif;
+                  "
+                >
+                  {%for j in bestprod %} {{j[0]}} {% endfor %} with sales worth
+                  {%for j in bestprod %} {{j[1]}} shillings {% endfor %}
+                </p>
+              </div>
+              <div class="progresss">
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+                <!-- <div class="percentage">
+                                <p>+21%</p>
+                            </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End of Analyses -->
+
+        <!-- End of New Users Section -->
+
+        <!-- Recent Orders Table -->
+        <div class="recent-orders">
+          <h2>Recent Sales</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>name</th>
+
+                <th>created at</th>
+                <th>total sales</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for i in salee%}
+              <tr>
+                <td>{{i[0]}}</td>
+                <td>{{i[1]}}</td>
+                <td>{{i[2]}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <a href="/login">Show All</a>
+        </div>
+        <div class="recent-orders">
+          <h2>Available Products</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>buying price</th>
+                <th>selling price</th>
+                <th>stock quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for i in prods2%}
+              <tr>
+                <td>{{i[0]}}</td>
+                <td>{{i[1]}}</td>
+                <td>{{i[2]}}</td>
+                <td>{{i[3]}}</td>
+                <td>{{i[4]}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <a href="/login">Show All</a>
+        </div>
+        <!-- End of Recent Orders -->
+      </main>
+      <!-- End of Main Content -->
+
+      <!-- Right Section -->
+      <div class="right-section">
+        <div class="nav">
+          <button id="menu-btn">
+            <span class="material-icons-sharp"> menu </span>
+          </button>
+          <div class="dark-mode">
+            <span class="material-icons-sharp active"> light_mode </span>
+            <span class="material-icons-sharp"> dark_mode </span>
+          </div>
+        </div>
+        <!-- End of Nav -->
+
+        <div class="user-profile">
+          <div class="logo">
+            <h2>MyDuka System</h2>
+            <p>Point of sale system</p>
+            <video controls loop width="300" height="700" autoplay muted>
+              <source
+                src="/static/production_id_4251604 (1080p).mp4"
+                type="video/mp4"
+              />
+              <source src="movie.ogg" type="video/ogg" />
+            </video>
+            <video controls loop width="300" height="700" autoplay muted>
+              <source
+                src="/static/pexels-kevin-malik-9015595 (Original).mp4"
+                type="video/mp4"
+              />
+              <source src="movie.ogg" type="video/ogg" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/static/js/index.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
